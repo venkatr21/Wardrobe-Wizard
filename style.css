@@ -1,0 +1,22 @@
+html{
+	font-size: 20px;
+	color: rgb(0,255,255);
+}
+
+body {	
+	background-color: black;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+}
+body h1{
+	color: red;
+	font-size: 40px;
+}
+body label{
+	color: red;
+	font-size: 40px;
+}
+body p{
+	color: red;
+	font-size: 9rem;
+}
