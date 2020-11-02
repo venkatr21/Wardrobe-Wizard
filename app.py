@@ -53,19 +53,10 @@ html = """
         margin : 0px;
         color: red;
     }
-    .reportview-container:second {
-      flex-direction: row-reverse;
-    }
-    .pbar{
-        width: 100px;
-    }
 
   </style>
 """
 st.markdown(html, unsafe_allow_html=True)
-
-
-
 l = os.listdir('./Database/val/cloth/')
 cloth = []
 for i in range(0,len(l)) :
@@ -142,7 +133,6 @@ if user_input is not '' and selected is not '':
     for percent_complete in range(100):
         time.sleep(0.005)
         progress_bar.progress(percent_complete + 1)
-    #if st.button('Execute','b2'):
     f = open("./Database/val_pairs.txt" , "w")    
     f.write(user_input+".jpg "+selected+"_1.jpg")
     f.close()
