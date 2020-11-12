@@ -5,6 +5,7 @@ import time
 import random
 import string
 import os
+import requests
 import cv2
 from evaluate import execute
 from pose_parser import pose_parse
@@ -86,9 +87,18 @@ if os.environ['PYEV']=='true':
             )
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+            
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         cv2.rectangle(frame, (176, 48), (464, 432), (0, 255, 0), 2)
         image_placeholder.image(frame)
+    img1 = open('temp.jpg','rb').read()
+    headers = {'Ocp-Apim-Subscription-Key': "9467429b1aff4c28be9580ab86b684d7",'Content-Type': 'application/octet-stream'}
+    #params = {'visualFeatures': 'Categories,Description,Color'}
+    response = requests.post("https://cv21.cognitiveservices.azure.com/vision/v3.1/analyze?visualFeatures=faces", headers=headers, data=img1)
+    response.raise_for_status()
+    analysis = response.json()
+    print(analysis["faces"][0]["age"])
+    print(analysis["faces"][0]["gender"])
     os.environ['PYEV']='false'
         
 if os.environ['PYEV']=='false':
